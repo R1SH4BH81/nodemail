@@ -1,0 +1,265 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap");
+
+body {
+  font-family: "Nunito", sans-serif;
+
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+/* For a specific container */
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, #60a5fa, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.input {
+  border: none;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  background: #e2e8f0;
+  color: #111;
+  width: 100px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #60a5fa;
+}
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  margin: 10px;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+button.upload {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+button.upload:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.6);
+}
+
+button.send {
+  background: linear-gradient(135deg, #22c55e, #15803d);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+}
+button.send:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.6);
+}
+
+.message {
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #eab308;
+}
+
+.progress {
+  margin-top: 30px;
+  text-align: left;
+}
+
+.progress h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #f1f5f9;
+}
+
+.progress p {
+  font-size: 16px;
+  margin: 4px 0;
+  color: #cbd5e1;
+}
+
+.progress ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0 0;
+}
+
+.progress li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.status-pending,
+.status-sent,
+.status-failed {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-pending {
+  background: #334155;
+  color: #fbbf24;
+}
+
+.status-sent {
+  background: #065f46;
+  color: #34d399;
+}
+
+.status-failed {
+  background: #7f1d1d;
+  color: #f87171;
+}
+.pagination {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center; /* center vertically */
+  gap: 1rem; /* space between elements */
+  margin: 2rem 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.pagination button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #8e2de2, #4a00e0); /* modern gradient */
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.pagination button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.pagination span {
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  background: #f0f0f0;
+  color: #333;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+/* Make the container responsive */
+.container {
+  max-width: 1200px;
+  width: 99%; /* instead of fixed 100% with padding, allow scaling */
+  padding: 0.1rem;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  text-align: center;
+}
+
+/* Responsive heading */
+h1 {
+  font-size: 2rem;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+/* Responsive input */
+.input {
+  width: 80px; /* default for small screens */
+}
+
+@media (min-width: 480px) {
+  .input {
+    width: 120px;
+  }
+}
+
+/* Responsive buttons */
+button {
+  padding: 0.8rem 1.5rem;
+  font-size: 0.9rem;
+}
+
+@media (min-width: 768px) {
+  button {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Pagination responsive */
+.pagination {
+  flex-wrap: wrap; /* allow items to wrap on smaller screens */
+  gap: 0.5rem;
+}
+
+.pagination span {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+@media (min-width: 480px) {
+  .pagination span {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+/* Progress list responsive */
+.progress li {
+  font-size: 0.9rem;
+  padding: 8px 12px;
+}
+
+@media (min-width: 768px) {
+  .progress li {
+    font-size: 1rem;
+    padding: 10px 14px;
+  }
+}
