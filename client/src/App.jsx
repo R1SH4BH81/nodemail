@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = "http://127.0.0.1:4000";
 
 function App() {
   const [status, setStatus] = useState([]);
@@ -90,10 +90,12 @@ function App() {
 
       <div className="progress">
         <h2>Progress</h2>
-        <p>Total: {summary.total}</p>
-        <p>Sent: {summary.sent}</p>
-        <p>Failed: {summary.failed}</p>
-        <p>Pending: {summary.pending}</p>
+        <div className="summary-grid">
+          <div className="summary-item">Total: {summary.total}</div>
+          <div className="summary-item">Sent: {summary.sent}</div>
+          <div className="summary-item">Failed: {summary.failed}</div>
+          <div className="summary-item">Pending: {summary.pending}</div>
+        </div>
 
         <ul>
           {currentContacts.map((s, idx) => (

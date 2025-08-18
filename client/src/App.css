@@ -53,7 +53,7 @@ button {
   cursor: pointer;
   font-weight: 600;
   margin: 10px;
-  transition: transform 0.2s, box-shadow 0.3s;
+  transition: transform 0.5s, box-shadow 0.3s ease-in;
 }
 
 button.upload {
@@ -159,7 +159,7 @@ button.send:hover {
   color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-in;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -262,4 +262,26 @@ button {
     font-size: 1rem;
     padding: 10px 14px;
   }
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 1rem; /* space between items */
+  margin-bottom: 20px;
+}
+
+.summary-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-align: center;
+  color: #f1f5f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in;
+}
+
+.summary-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
