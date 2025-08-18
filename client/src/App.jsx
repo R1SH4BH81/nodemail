@@ -16,7 +16,7 @@ function App() {
 
   // pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const contactsPerPage = 50;
+  const contactsPerPage = 25;
 
   const loadContacts = async () => {
     try {

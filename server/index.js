@@ -3,6 +3,7 @@ const nodemailer = require("nodemailer");
 const fs = require("fs");
 const pdf = require("pdf-parse");
 const cors = require("cors");
+const xlsx = require("xlsx");
 
 const app = express();
 app.use(cors()); // allow all origins to avoid CORS mismatch
@@ -28,24 +29,25 @@ const clamp = (n, min, max) => Math.max(min, Math.min(n, max));
 app.post("/load-contacts", async (req, res) => {
   try {
     const rawStart = Number(req.body?.startIndex ?? 0);
-    let dataBuffer = fs.readFileSync("./contacts.pdf");
 
-    const parsed = await pdf(dataBuffer);
-    const lines = parsed.text.split("\n");
+    // Read Excel file
+    const workbook = xlsx.readFile("./contact.xlsx");
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+
+    // Convert sheet to JSON (header row should be: Name | Email | Title | Company)
+    const jsonData = xlsx.utils.sheet_to_json(sheet, { defval: "" });
 
     contactsAll = [];
-    for (const line of lines) {
-      const emailMatch = line.match(
-        /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/
-      );
-      if (!emailMatch) continue;
+    for (const row of jsonData) {
+      const name = row.Name?.trim();
+      const email = row.Email?.trim();
+      const company = row.Company?.trim();
 
-      const email = emailMatch[0];
-      const parts = line.split(email);
-      let name = (parts[0] || "").trim().replace(/^\d+\s*/, ""); // drop leading serial no
-      const company = (parts[1] || "").trim();
-
-      if (name && email) contactsAll.push({ name, email, company });
+      if (name && email && company) {
+        contactsAll.push({ name, email, company });
+        console.log("Parsed contact:", { name, email, company });
+      }
     }
 
     selectedStartIndex = clamp(rawStart, 0, contactsAll.length);
@@ -62,8 +64,8 @@ app.post("/load-contacts", async (req, res) => {
       message: `Loaded ${contactsAll.length} contacts. Will send from index ${selectedStartIndex}.`,
     });
   } catch (err) {
-    console.error("Error reading contacts.pdf:", err);
-    res.status(500).json({ message: "Could not read contacts.pdf" });
+    console.error("Error reading contacts.xlsx:", err);
+    res.status(500).json({ message: "Could not read contacts.xlsx" });
   }
 });
 
