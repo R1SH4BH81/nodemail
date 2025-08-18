@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
+const API_URL = process.env.REACT_APP_API_URL;
 
 function App() {
   const [status, setStatus] = useState([]);
@@ -19,7 +20,7 @@ function App() {
 
   const loadContacts = async () => {
     try {
-      const res = await axios.post("http://127.0.0.1:4000/load-contacts", {
+      const res = await axios.post(`${API_URL}/load-contacts`, {
         startIndex: parseInt(startIndex, 10) || 0,
       });
       setMessage(res.data.message);
@@ -32,7 +33,7 @@ function App() {
 
   const sendMails = async () => {
     try {
-      const res = await axios.post("http://127.0.0.1:4000/send", {
+      const res = await axios.post(`${API_URL}/send`, {
         startIndex: parseInt(startIndex, 10) || 0,
         limit: 500,
       });
@@ -46,7 +47,7 @@ function App() {
 
   const fetchStatus = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:4000/status");
+      const res = await axios.get(`${API_URL}/status`);
       // filter out skipped
       const filtered = res.data.progress.filter((s) => s.status !== "skipped");
       setStatus(filtered);
