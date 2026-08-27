@@ -45,17 +45,17 @@ function App() {
     }
   };
 
-  const fetchStatus = async () => {
-    try {
-      const res = await axios.get(`${API_URL}/status`);
-      // filter out skipped
-      const filtered = res.data.progress.filter((s) => s.status !== "skipped");
-      setStatus(filtered);
-      setSummary(res.data.summary);
-    } catch (err) {
-      console.error("Status fetch failed", err);
-    }
-  };
+  // const fetchStatus = async () => {
+  //   try {
+  //     const res = await axios.get(`${API_URL}/status`);
+  //     // filter out skipped
+  //     const filtered = res.data.progress.filter((s) => s.status !== "skipped");
+  //     setStatus(filtered);
+  //     setSummary(res.data.summary);
+  //   } catch (err) {
+  //     console.error("Status fetch failed", err);
+  //   }
+  // };
 
   useEffect(() => {
     const interval = setInterval(fetchStatus, 3000);
