@@ -1,8 +1,8 @@
 const express = require("express");
-// const nodemailer = require("nodemailer");
-// const fs = require("fs");
-// const pdf = require("pdf-parse");
-// const cors = require("cors");
+const nodemailer = require("nodemailer");
+const fs = require("fs");
+const pdf = require("pdf-parse");
+const cors = require("cors");
 const xlsx = require("xlsx");
 
 const app = express();
